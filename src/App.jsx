@@ -21,6 +21,7 @@ const App = () => {
         setIsLoading(false);
       } catch (err) {
         setError(err.message);
+        setIsLoading(false);
       }
     }
     fetchCoins();
@@ -29,7 +30,11 @@ const App = () => {
   return (
     <div>
       <h1>Crypto Dash 🚀</h1>
-      {error}
+      {error && <p>{error}</p>}
+      {isLoading && <p>Loading...</p>}
+      <div className="grid">
+
+      </div>
     </div>
   )
 }
