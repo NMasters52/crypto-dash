@@ -33,7 +33,11 @@ const App = () => {
       {error && <p>{error}</p>}
       {isLoading && <p>Loading...</p>}
       <div className="grid">
-
+        {coins.map((coin) => (
+          <div className="coin-card" key={coin.id}>
+            
+          </div>
+        ))}
       </div>
     </div>
   )
