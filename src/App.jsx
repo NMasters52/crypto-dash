@@ -3,7 +3,7 @@ const API_URL = import.meta.env.VITE_COINS_API_URL;
 
 const App = () => {
 
-  const [coins, setCoins] = useState(null);
+  const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [limit, setLimit] = useState(10);
@@ -18,14 +18,16 @@ const App = () => {
         const data = await res.json();
         console.log(data);
         setCoins(data);
+        console.log(coins)
         setIsLoading(false);
       } catch (err) {
         setError(err.message);
         setIsLoading(false);
+        console.error(err)
       }
     }
     fetchCoins();
-  }, [limit])
+  }, [limit, coins])
 
   return (
     <div>
@@ -35,7 +37,7 @@ const App = () => {
       <div className="grid">
         {coins.map((coin) => (
           <div className="coin-card" key={coin.id}>
-            
+            <p>{coin.id}</p>
           </div>
         ))}
       </div>
