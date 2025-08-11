@@ -36,7 +36,8 @@ const App = () => {
       <div className="grid">
         {coins.map((coin) => (
           <div className="coin-card" key={coin.id}>
-            <p>{coin.id}</p>
+            <p>{coin.symbol}</p>
+            <img className="coin-image" src={`${coin.image}`}></img>
           </div>
         ))}
       </div>
