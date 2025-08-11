@@ -23,11 +23,10 @@ const App = () => {
       } catch (err) {
         setError(err.message);
         setIsLoading(false);
-        console.error(err)
       }
     }
     fetchCoins();
-  }, [limit, coins])
+  }, [limit])
 
   return (
     <div>
