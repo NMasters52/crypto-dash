@@ -36,8 +36,22 @@ const App = () => {
       <div className="grid">
         {coins.map((coin) => (
           <div className="coin-card" key={coin.id}>
-            <p>{coin.symbol}</p>
-            <img className="coin-image" src={`${coin.image}`}></img>
+            <div className="coin-header">
+              <img className="coin-image" alt={coin.name} src={coin.image}></img>
+              <div>
+                <h2 className="">{coin.name}</h2>
+                <p className="symbol">{coin.symbol.toUpperCase()}</p>
+              </div>
+            </div>
+              <p>Price: ${coin.current_price.toLocaleString()}</p>
+              <p
+                className={
+                  coin.price_change_percentage_24h >= 0 ? 'positive' : 'negative'
+                }
+              >
+                {coin.price_change_percentage_24h.toFixed(2)} %
+              </p>
+              <p>Market Cap: {coin.market_cap.toLocaleString()}</p>
           </div>
         ))}
       </div>
