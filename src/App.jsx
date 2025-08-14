@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CoinCard from "./components/CoinCard";
 const API_URL = import.meta.env.VITE_COINS_API_URL;
 
 const App = () => {
@@ -16,12 +17,11 @@ const App = () => {
         );
         if(!res.ok) throw new Error('Failed to fetch data');
         const data = await res.json();
-        console.log(data);
         setCoins(data);
-        console.log(coins)
-        setIsLoading(false);
       } catch (err) {
         setError(err.message);
+      }
+      finally {
         setIsLoading(false);
       }
     }
@@ -33,28 +33,15 @@ const App = () => {
       <h1>Crypto Dash 🚀</h1>
       {error && <p>{error}</p>}
       {isLoading && <p>Loading...</p>}
-      <div className="grid">
+      { !isLoading && !error && (
+        <div className="grid">
         {coins.map((coin) => (
-          <div className="coin-card" key={coin.id}>
-            <div className="coin-header">
-              <img className="coin-image" alt={coin.name} src={coin.image}></img>
-              <div>
-                <h2 className="">{coin.name}</h2>
-                <p className="symbol">{coin.symbol.toUpperCase()}</p>
-              </div>
-            </div>
-              <p>Price: ${coin.current_price.toLocaleString()}</p>
-              <p
-                className={
-                  coin.price_change_percentage_24h >= 0 ? 'positive' : 'negative'
-                }
-              >
-                {coin.price_change_percentage_24h.toFixed(2)} %
-              </p>
-              <p>Market Cap: {coin.market_cap.toLocaleString()}</p>
-          </div>
+          <CoinCard key={coin.id} coin={coin} />
         ))}
       </div>
+      )
+      }
+     
     </div>
   )
 }
