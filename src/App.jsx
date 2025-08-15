@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CoinCard from "./components/CoinCard";
+import LimitControler from "./components/LimitControler";
 const API_URL = import.meta.env.VITE_COINS_API_URL;
 
 const App = () => {
@@ -31,6 +32,9 @@ const App = () => {
   return (
     <div>
       <h1>Crypto Dash 🚀</h1>
+      <div className="top-controls">
+        <LimitControler limit={limit} setLimit={setLimit} />
+      </div>
       {error && <p>{error}</p>}
       {isLoading && <p>Loading...</p>}
       { !isLoading && !error && (
