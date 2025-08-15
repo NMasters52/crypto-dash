@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CoinCard from "./components/CoinCard";
 import LimitControler from "./components/LimitControler";
 import CoinFilter from "./components/CoinFilter";
+import SortSelector from "./components/SortSelector";
 const API_URL = import.meta.env.VITE_COINS_API_URL;
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
   const [error, setError] = useState('');
   const [limit, setLimit] = useState(10);
   const [filter, setFilter] = useState('');
+  const [sortBy, setSortBy] = useState('market_cap_desc')
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -38,6 +40,23 @@ const App = () => {
         coin.symbol.toLowerCase().includes(filter.toLowerCase())
     );
   })
+  .slice()
+  .sort((a,b) => {
+    switch (sortBy) {
+      case 'market_cap_desc' :
+        return b.market_cap - a.market_cap;
+      case 'market_cap_asc':
+        return a.market_cap - b.market_cap;
+      case 'price_desc':
+        return b.current_price - a.current_price;
+      case 'price_asc':
+        return a.current_price - b.current_price;
+      case 'change_desc':
+        return b.price_change_percentage_24h - a.price_change_percentage_24h;
+      case 'change_asc':
+        return a.price_change_percentage_24h - b.price_change_percentage_24h;
+    }
+  })
   
 
   return (
@@ -48,6 +67,7 @@ const App = () => {
 
       <div className="top-controls">
         <CoinFilter filter={filter} setFilter={setFilter} />
+        <SortSelector sortBy={sortBy} setSortBy={setSortBy} />
         <LimitControler limit={limit} setLimit={setLimit} />
       </div>
       
