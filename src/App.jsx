@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import CoinsDetailsPage from "./pages/CoinsDetailsPage";
 
 const API_URL = import.meta.env.VITE_COINS_API_URL;
 
@@ -57,6 +58,8 @@ const App = () => {
           />} 
         />
         <Route path="/about" element={ <AboutPage /> } />
+        {/* : indicates that the param is dynamic */}
+        <Route path="/coin/:id" element={ <CoinsDetailsPage />} />
         <Route path="*" element={ <NotFoundPage /> } />
       </Routes>
     </>

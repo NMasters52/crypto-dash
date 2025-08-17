@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router'
 
 const NotFoundPage = () => {
@@ -28,7 +27,7 @@ const styles = {
   },
   link: {
     textDecoration: 'none',
-    color: '#007bff',
+    color: 'hsla(69, 83%, 41%, 1.00)',
     fontWeight: 'bold'
   }
 }

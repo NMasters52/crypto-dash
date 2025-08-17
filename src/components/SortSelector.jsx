@@ -3,7 +3,7 @@ import React from 'react'
 const SortSelector = ({sortBy, setSortBy}) => {
   return (
     <div className="controls">
-        <label htmlfor="sort">Sort by:</label>
+        <label htmlFor="sort">Sort by:</label>
         <select 
             id="sort"
             value={sortBy}
